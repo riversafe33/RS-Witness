@@ -1,3 +1,5 @@
+To improve my PC and continue offering free scripts: https://ko-fi.com/riversafe33
+
 Witness system when attacking NPCs
 
 1 - If you attack NPCs, the Sheriffs will be notified.
