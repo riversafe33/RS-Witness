@@ -5,28 +5,14 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1)
 
-        local playerPed = PlayerPedId()
-        local isShooting = IsPedShooting(playerPed)
-        local isMelee = IsPedInMeleeCombat(playerPed)
+        if IsPedShooting(PlayerPedId()) and not witnessActive then
+            local retval, target = GetEntityPlayerIsFreeAimingAt(PlayerId())
 
-        if (isShooting or isMelee) and not witnessActive then
-            local coords = GetEntityCoords(playerPed)
-            local target
-
-            if isShooting then
-                local retval, aimedTarget = GetEntityPlayerIsFreeAimingAt(PlayerId())
-                if retval and DoesEntityExist(aimedTarget) then
-                    target = aimedTarget
-                end
-            elseif isMelee then
-                target = GetClosestPed(nil, coords)
-            end
-
-            if target and DoesEntityExist(target) and (GetPedType(target) == 4 or GetPedType(target) == 5 or GetPedType(target) == 2) then
+            if GetPedType(target) == 4 or GetPedType(target) == 5 or GetPedType(target) == 2 then
                 local random = math.random(1, 100)
 
                 if random <= Config.WitnessProbability then
-                    witnessActive = true
+                     witnessActive = true
                     CreateWitness(target)
                 end
             end
