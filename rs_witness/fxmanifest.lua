@@ -1,5 +1,5 @@
 version '1.0.0'
-author 'alicain'
+author 'riversafe'
 
 fx_version "adamant"
 games {"rdr3"}
